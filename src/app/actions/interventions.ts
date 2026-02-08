@@ -5,9 +5,15 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const InterventionSchema = z.object({
-    type: z.string().min(1),
     clientId: z.string().min(1),
     vehicleId: z.string().min(1),
+    selectedServices: z.array(z.string()).min(1),
+    addedProducts: z.array(z.object({
+        id: z.string(),
+        name: z.string(),
+        price: z.number(),
+        quantity: z.number()
+    })).optional(),
     symptoms: z.string().min(1),
     status: z.string().default("En attente"),
     cost: z.coerce.number().default(0),
@@ -55,7 +61,7 @@ export async function createIntervention(data: any) {
     try {
         const validatedData = InterventionSchema.parse(data);
 
-        const { paymentMethod, paymentStatus, ...interventionData } = validatedData;
+        const { paymentMethod, paymentStatus, selectedServices, addedProducts, ...otherData } = validatedData;
         const year = new Date().getFullYear();
 
         // Custom ID for Intervention
@@ -64,10 +70,16 @@ export async function createIntervention(data: any) {
         });
         const customId = `INT-${year}-${(count + 1).toString().padStart(3, '0')}`;
 
+        // Prepare data for Prisma
         const intervention = await prisma.intervention.create({
             data: {
-                ...interventionData,
-                customId
+                ...otherData,
+                type: selectedServices.join(", "),
+                services: selectedServices,
+                products: addedProducts as any,
+                customId,
+                client: { connect: { id: validatedData.clientId } },
+                vehicle: { connect: { id: validatedData.vehicleId } }
             },
         });
 

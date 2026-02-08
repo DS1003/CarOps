@@ -51,6 +51,8 @@ model Intervention {
   cleanliness String?
   condition   String?
   fuelLevel   String?
+  services    Json?
+  products    Json?
   client      Client    @relation(fields: [clientId], references: [id])
   vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
   invoice     Invoice?
