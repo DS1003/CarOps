@@ -99,7 +99,7 @@ export interface AppUser {
 }
 
 export interface DashboardClient {
-    id: number;
+    id: string;
     name: string;
     email: string;
     phone: string;
@@ -118,7 +118,7 @@ export interface DashboardInvoice {
 }
 
 export interface InventoryItem {
-    id: number;
+    id: string;
     name: string;
     sku: string;
     category: string;
