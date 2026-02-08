@@ -71,24 +71,29 @@ export async function getDashboardStats() {
             color: ["#ef4444", "#1f2937", "#6b7280", "#9ca3af", "#d1d5db"][index % 5] // Matching RV 69 palette (Red/Black/Grey)
         }));
 
-        // Revenue over the last 6 months for Bar Chart
+        // Revenue over the last 6 months for Bar Chart - Optimized to single query
+        const sixMonthsAgo = startOfMonth(subMonths(now, 5));
+        const historicalInvoices = await prisma.invoice.findMany({
+            where: {
+                status: "Payée",
+                date: { gte: sixMonthsAgo }
+            },
+            select: { amount: true, date: true }
+        });
+
         const barChartData = [];
         for (let i = 5; i >= 0; i--) {
             const mStart = startOfMonth(subMonths(now, i));
             const mEnd = endOfMonth(subMonths(now, i));
             const monthName = mStart.toLocaleString('fr-FR', { month: 'short' });
 
-            const monthInvoices = await prisma.invoice.aggregate({
-                where: {
-                    status: "Payée",
-                    date: { gte: mStart, lte: mEnd }
-                },
-                _sum: { amount: true }
-            });
+            const monthlyTotal = historicalInvoices
+                .filter(inv => inv.date >= mStart && inv.date <= mEnd)
+                .reduce((sum, inv) => sum + inv.amount, 0);
 
             barChartData.push({
                 name: monthName,
-                value: monthInvoices._sum.amount || 0
+                value: monthlyTotal
             });
         }
 

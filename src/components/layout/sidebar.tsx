@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Wrench, LogOut } from "lucide-react";
@@ -24,7 +25,7 @@ export function Sidebar({ items = [], title = "RV 69" }: SidebarProps) {
         <aside className="flex h-screen w-64 flex-col bg-white border-r border-gray-100/80 transition-all duration-300">
             <div className="h-16 flex items-center px-6">
                 <Link href="/" className="flex items-center gap-3">
-                    <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain" />
+                    <Image src="/logo.png" alt="Logo" width={32} height={32} className="h-8 w-8 object-contain" priority />
                     <span className="text-xl font-black tracking-tight text-gray-900 italic uppercase">
                         RV <span className="text-primary">69</span>
                     </span>
