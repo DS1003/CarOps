@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id            String         @id @default(cuid())
+  name          String
+  email         String?        @unique
+  phone         String
+  address       String?
+  city          String?
+  joinedAt      DateTime       @default(now())
+  interventions Intervention[]
+  vehicles      Vehicle[]
+}
+
+model Vehicle {
+  id            String         @id @default(cuid())
+  brand         String
+  model         String
+  plate         String         @unique
+  year          Int
+  type          String
+  color         String
+  mileage       Int
+  createdAt     DateTime       @default(now())
+  ownerId       String
+  imageUrl      String?
+  interventions Intervention[]
+  owner         Client         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model Intervention {
+  id          String    @id @default(cuid())
+  customId    String?   @unique
+  type        String
+  status      String    @default("En attente")
+  dateIn      DateTime  @default(now())
+  dateOut     DateTime?
+  symptoms    String
+  diagnostic  String?
+  cost        Float     @default(0)
+  clientId    String
+  vehicleId   String
+  imageUrl    String?
+  cleanliness String?
+  condition   String?
+  fuelLevel   String?
+  client      Client    @relation(fields: [clientId], references: [id])
+  vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
+  invoice     Invoice?
+}
+
+model Invoice {
+  id             String       @id @default(cuid())
+  customId       String?      @unique
+  amount         Float
+  status         String       @default("En attente")
+  date           DateTime     @default(now())
+  method         String?
+  interventionId String       @unique
+  intervention   Intervention @relation(fields: [interventionId], references: [id])
+}
+
+model Product {
+  id       String @id @default(cuid())
+  name     String
+  category String
+  price    Float
+  stock    Int
+  minStock Int    @default(5)
+  unit     String @default("Pièce")
+}
+
+model Service {
+  id       String @id @default(cuid())
+  name     String
+  category String
+  price    Float
+  duration String
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  role      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
