@@ -75,12 +75,12 @@ export async function createIntervention(data: any) {
             data: {
                 ...otherData,
                 type: selectedServices.join(", "),
-                services: selectedServices,
+                services: selectedServices as any,
                 products: addedProducts as any,
                 customId,
                 client: { connect: { id: validatedData.clientId } },
                 vehicle: { connect: { id: validatedData.vehicleId } }
-            },
+            } as any,
         });
 
         // Create Invoice if paid now

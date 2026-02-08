@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { NavSection } from "@/types";
 
 interface SidebarProps {
-    items: NavSection[];
+    items?: NavSection[];
     title?: string;
 }
 
