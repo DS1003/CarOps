@@ -23,7 +23,7 @@ export default async function NewInterventionPage({
     const products = productsResult.success ? productsResult.data : [];
 
     return (
-        <div className="bg-gray-50/30 min-h-screen font-sans p-6 md:p-12">
+        <div className="bg-gray-50/30 min-h-screen font-sans p-5 md:p-8 lg:p-12">
             <div className="max-w-[1600px] mx-auto">
                 <NewInterventionForm
                     clients={clients || []}

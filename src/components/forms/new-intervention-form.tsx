@@ -199,42 +199,43 @@ export function NewInterventionForm({
     return (
         <div className="w-full space-y-8 pb-20">
             {/* Header Area */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div className="flex items-center gap-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 lg:gap-6 mb-8 lg:mb-12">
+                <div className="flex items-center gap-4 lg:gap-6">
                     <Button
                         variant="outline"
                         onClick={() => step > 1 ? handleBack() : router.back()}
-                        className="h-12 w-12 rounded-2xl border-gray-100 hover:bg-gray-50 text-gray-400 group transition-all"
+                        className="h-10 w-10 lg:h-12 lg:w-12 rounded-2xl border-gray-100 hover:bg-gray-50 text-gray-400 group transition-all"
                     >
                         <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
                     </Button>
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <span className="h-1.5 w-6 bg-red-600 rounded-full" />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-red-600/50">Atelier Expertise</span>
+                            <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-red-600/50">Atelier Expertise</span>
                         </div>
-                        <h1 className="text-4xl font-light text-gray-900 tracking-tight">
+                        <h1 className="text-3xl lg:text-4xl font-light text-gray-900 tracking-tight">
                             Nouvelle <span className="font-black italic text-gray-900">Intervention</span>
                         </h1>
                     </div>
                 </div>
 
                 {/* Refined Stepper */}
-                <div className="flex items-center gap-3 bg-white/50 backdrop-blur-xl p-2 rounded-[2rem] border border-gray-100/50 shadow-sm self-start">
+                <div className="flex items-center gap-2 lg:gap-3 bg-white/50 backdrop-blur-xl p-1.5 rounded-[2rem] border border-gray-100/50 shadow-sm self-start mt-4 md:mt-0 overflow-x-auto no-scrollbar max-w-full">
                     {steps.map((s, i) => (
-                        <div key={s.id} className="flex items-center">
+                        <div key={s.id} className="flex items-center shrink-0">
                             <div className={cn(
-                                "h-12 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all duration-500",
+                                "h-10 lg:h-12 px-4 lg:px-6 rounded-2xl flex items-center justify-center gap-2 lg:gap-3 transition-all duration-500",
                                 step === s.id ? "bg-gray-900 text-white shadow-xl shadow-gray-200" :
                                     step > s.id ? "bg-red-50 text-red-600" : "bg-transparent text-gray-300"
                             )}>
-                                <s.icon className={cn("h-4 w-4", step === s.id ? "animate-pulse" : "")} />
-                                <span className={cn("text-[10px] font-black uppercase tracking-widest", step === s.id ? "block" : "hidden md:block")}>
+                                <s.icon className={cn("h-3.5 w-3.5 lg:h-4 lg:w-4", step === s.id ? "animate-pulse" : "")} />
+                                <span className={cn("text-[9px] lg:text-[10px] font-black uppercase tracking-widest whitespace-nowrap",
+                                    step === s.id ? "block" : "hidden lg:block")}>
                                     {s.label}
                                 </span>
                                 {step > s.id && <CheckCircle2 className="h-3 w-3" />}
                             </div>
-                            {i < steps.length - 1 && <div className="w-4 h-[1px] bg-gray-100 mx-1" />}
+                            {i < steps.length - 1 && <div className="w-3 lg:w-4 h-[1px] bg-gray-100 mx-1" />}
                         </div>
                     ))}
                 </div>
@@ -248,24 +249,24 @@ export function NewInterventionForm({
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.02 }}
-                        className="grid lg:grid-cols-4 gap-8"
+                        className="grid lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
                     >
                         {/* Info Panel */}
                         <div className="lg:col-span-1 space-y-6">
-                            <div className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white shadow-sm h-full">
-                                <div className="h-14 w-14 bg-red-600 rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
-                                    <Users className="h-6 w-6" />
+                            <div className="bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[2.5rem] border border-white shadow-sm h-full">
+                                <div className="h-12 w-12 lg:h-14 lg:w-14 bg-red-600 rounded-2xl lg:rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
+                                    <Users className="h-5 w-5 lg:h-6 lg:w-6" />
                                 </div>
-                                <h3 className="text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Identité <br />du Client</h3>
-                                <p className="text-sm font-medium text-gray-400 leading-relaxed">
+                                <h3 className="text-lg lg:text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Identité <br />du Client</h3>
+                                <p className="text-xs lg:text-sm font-medium text-gray-400 leading-relaxed">
                                     Sélectionnez un membre de votre base de données ou créez un nouveau profil en un clic pour démarrer l'intervention.
                                 </p>
                             </div>
                         </div>
 
                         {/* Search & Selection */}
-                        <div className="lg:col-span-3">
-                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-8 md:p-12 h-full">
+                        <div className="lg:col-span-2 xl:col-span-3">
+                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 md:p-8 lg:p-12 h-full">
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                                     <h2 className="text-sm font-black text-gray-900 tracking-tighter uppercase ml-1">Répertoire Client</h2>
                                     {!showNewClientForm && (
@@ -364,22 +365,22 @@ export function NewInterventionForm({
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.02 }}
-                        className="grid lg:grid-cols-4 gap-8"
+                        className="grid lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
                     >
                         {/* Info Panel */}
                         <div className="lg:col-span-1 space-y-6">
-                            <div className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white shadow-sm h-full">
-                                <div className="h-14 w-14 bg-red-600 rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
-                                    <Car className="h-6 w-6" />
+                            <div className="bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[2.5rem] border border-white shadow-sm h-full">
+                                <div className="h-12 w-12 lg:h-14 lg:w-14 bg-red-600 rounded-2xl lg:rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
+                                    <Car className="h-5 w-5 lg:h-6 lg:w-6" />
                                 </div>
-                                <h3 className="text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Véhicule <br />& Audit</h3>
-                                <p className="text-sm font-medium text-gray-400 leading-relaxed">
+                                <h3 className="text-lg lg:text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Véhicule <br />& Audit</h3>
+                                <p className="text-xs lg:text-sm font-medium text-gray-400 leading-relaxed">
                                     Identifiez le véhicule concerné et effectuez un audit rapide de son état à la réception pour garantir une transparence totale.
                                 </p>
 
-                                <div className="mt-12 space-y-4">
+                                <div className="mt-8 lg:mt-12 space-y-4">
                                     <div className="p-4 rounded-2xl bg-gray-900/5 border border-gray-900/5">
-                                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Propriétaire</div>
+                                        <div className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Propriétaire</div>
                                         <div className="font-black text-gray-900 tracking-tight">{selectedClient?.name}</div>
                                     </div>
                                 </div>
@@ -387,8 +388,8 @@ export function NewInterventionForm({
                         </div>
 
                         {/* Search & Audit */}
-                        <div className="lg:col-span-3 space-y-8">
-                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-8 md:p-12">
+                        <div className="lg:col-span-2 xl:col-span-3 space-y-8">
+                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 md:p-8 lg:p-12">
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                                     <h2 className="text-sm font-black text-gray-900 tracking-tighter uppercase ml-1">Répertoire Véhicule</h2>
                                     {!showNewVehicleForm && (
@@ -566,31 +567,31 @@ export function NewInterventionForm({
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.02 }}
-                        className="grid lg:grid-cols-4 gap-8"
+                        className="grid lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
                     >
                         {/* Info & Recap Panel */}
                         <div className="lg:col-span-1 space-y-6">
-                            <div className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white shadow-sm h-full flex flex-col">
-                                <div className="h-14 w-14 bg-red-600 rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
+                            <div className="bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[2.5rem] border border-white shadow-sm h-full flex flex-col">
+                                <div className="h-12 w-12 lg:h-14 lg:w-14 bg-red-600 rounded-2xl lg:rounded-3xl flex items-center justify-center text-white mb-6 shadow-2xl shadow-red-200">
                                     <Wrench className="h-6 w-6" />
                                 </div>
-                                <h3 className="text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Prestations <br />& Pièces</h3>
-                                <p className="text-sm font-medium text-gray-400 leading-relaxed mb-8">
+                                <h3 className="text-lg lg:text-xl font-black text-gray-900 leading-tight mb-4 uppercase italic">Prestations <br />& Pièces</h3>
+                                <p className="text-xs lg:text-sm font-medium text-gray-400 leading-relaxed mb-8">
                                     Composez l'intervention en sélectionnant les services requis et en ajoutant les pièces détachées nécessaires.
                                 </p>
 
                                 <div className="mt-auto space-y-6">
-                                    <div className="p-6 rounded-[2rem] bg-gray-900 text-white shadow-2xl shadow-gray-200">
-                                        <div className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-1">Total Estimé</div>
-                                        <div className="text-3xl font-black tracking-tighter">{totalCost.toLocaleString()} <span className="text-sm font-light opacity-50">FCFA</span></div>
+                                    <div className="p-4 lg:p-6 rounded-[2rem] bg-gray-900 text-white shadow-2xl shadow-gray-200">
+                                        <div className="text-[9px] lg:text-[10px] font-black text-white/40 uppercase tracking-widest mb-1">Total Estimé</div>
+                                        <div className="text-2xl lg:text-3xl font-black tracking-tighter">{totalCost.toLocaleString()} <span className="text-xs lg:text-sm font-light opacity-50">FCFA</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Selection Area */}
-                        <div className="lg:col-span-3 space-y-8">
-                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-8 md:p-12">
+                        <div className="lg:col-span-2 xl:col-span-3 space-y-8">
+                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 md:p-8 lg:p-12">
                                 <h2 className="text-sm font-black text-gray-900 tracking-tighter uppercase ml-1 mb-8">Catalogue des Services <span className="text-red-600 text-[12px]">*</span></h2>
 
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2 p-1">
@@ -624,7 +625,7 @@ export function NewInterventionForm({
 
                             <div className="grid lg:grid-cols-2 gap-8">
                                 {/* Product Search */}
-                                <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-8 md:p-10">
+                                <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 lg:p-10">
                                     <div className="flex items-center gap-3 mb-8">
                                         <div className="h-10 w-10 bg-red-50 rounded-xl flex items-center justify-center text-red-600">
                                             <Package className="h-5 w-5" />
@@ -740,40 +741,40 @@ export function NewInterventionForm({
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.02 }}
-                        className="grid lg:grid-cols-3 gap-8"
+                        className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
                     >
                         {/* Summary Column */}
-                        <div className="lg:col-span-2 space-y-8">
-                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-8 md:p-12">
+                        <div className="lg:col-span-1 xl:col-span-2 space-y-8">
+                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 md:p-8 lg:p-12">
                                 <h2 className="text-sm font-black text-gray-900 tracking-tighter uppercase ml-1 mb-10">Récapitulatif de l'Intervention</h2>
 
-                                <div className="grid md:grid-cols-2 gap-12 mb-12">
-                                    <div className="space-y-8">
-                                        <div className="flex items-center gap-6">
-                                            <div className="h-16 w-16 rounded-[2rem] bg-gray-50 flex items-center justify-center text-gray-400 border border-gray-100">
-                                                <Users className="h-7 w-7" />
+                                <div className="grid md:grid-cols-2 gap-6 lg:gap-12 mb-12">
+                                    <div className="space-y-6 lg:space-y-8">
+                                        <div className="flex items-center gap-4 lg:gap-6">
+                                            <div className="h-14 w-14 lg:h-16 lg:w-16 rounded-[1.5rem] lg:rounded-[2rem] bg-gray-50 flex items-center justify-center text-gray-400 border border-gray-100">
+                                                <Users className="h-6 w-6 lg:h-7 lg:w-7" />
                                             </div>
                                             <div>
-                                                <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Client</div>
-                                                <div className="font-black text-xl text-gray-900 tracking-tight">{selectedClient?.name}</div>
-                                                <div className="text-xs font-bold text-gray-300 uppercase tracking-widest">{selectedClient?.phone}</div>
+                                                <div className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Client</div>
+                                                <div className="font-black text-lg lg:text-xl text-gray-900 tracking-tight">{selectedClient?.name}</div>
+                                                <div className="text-[10px] lg:text-xs font-bold text-gray-300 uppercase tracking-widest">{selectedClient?.phone}</div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-6">
-                                            <div className="h-16 w-16 rounded-[2rem] bg-gray-900 flex items-center justify-center text-white shadow-xl shadow-gray-200">
-                                                <Car className="h-7 w-7" />
+                                        <div className="flex items-center gap-4 lg:gap-6">
+                                            <div className="h-14 w-14 lg:h-16 lg:w-16 rounded-[1.5rem] lg:rounded-[2rem] bg-gray-900 flex items-center justify-center text-white shadow-xl shadow-gray-200">
+                                                <Car className="h-6 w-6 lg:h-7 lg:w-7" />
                                             </div>
                                             <div>
-                                                <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Véhicule</div>
-                                                <div className="font-black text-xl text-gray-900 tracking-tight uppercase italic">{selectedVehicle?.brand} {selectedVehicle?.model}</div>
-                                                <div className="inline-block px-3 py-1 bg-red-600 text-white text-[10px] font-black rounded-lg mt-1 tracking-widest italic">{selectedVehicle?.plate}</div>
+                                                <div className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Véhicule</div>
+                                                <div className="font-black text-lg lg:text-xl text-gray-900 tracking-tight uppercase italic">{selectedVehicle?.brand} {selectedVehicle?.model}</div>
+                                                <div className="inline-block px-3 py-1 bg-red-600 text-white text-[9px] lg:text-[10px] font-black rounded-lg mt-1 tracking-widest italic">{selectedVehicle?.plate}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100">
+                                    <div className="bg-gray-50/50 p-6 lg:p-8 rounded-[2rem] lg:rounded-[2.5rem] border border-gray-100 shadow-inner">
                                         <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">Expertise Réception</div>
-                                        <div className="grid grid-cols-1 gap-4">
+                                        <div className="grid grid-cols-1 gap-3 lg:gap-4">
                                             <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-1 h-1 rounded-full bg-red-600" />
@@ -833,7 +834,7 @@ export function NewInterventionForm({
 
                         {/* Payment Column */}
                         <div className="space-y-8">
-                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-10">
+                            <div className="bg-white rounded-[3rem] border border-gray-100 shadow-2xl shadow-gray-100/50 p-6 lg:p-10">
                                 <h3 className="text-sm font-black text-gray-900 tracking-tighter uppercase mb-10">Règlement</h3>
 
                                 <div className="space-y-10">
@@ -874,13 +875,13 @@ export function NewInterventionForm({
                                                     key={m.id}
                                                     onClick={() => setFormData({ ...formData, paymentMethod: m.id })}
                                                     className={cn(
-                                                        "flex flex-col items-center gap-3 p-6 rounded-[1.75rem] border-2 transition-all group",
+                                                        "flex flex-col items-center gap-2 lg:gap-3 p-4 lg:p-6 rounded-[1.5rem] lg:rounded-[1.75rem] border-2 transition-all group",
                                                         formData.paymentMethod === m.id
                                                             ? "border-red-600 bg-red-50/20 text-red-600 shadow-lg shadow-red-100/50"
                                                             : "border-gray-50 bg-gray-50/30 text-gray-400 hover:border-gray-200 hover:bg-white"
                                                     )}
                                                 >
-                                                    <m.icon className={cn("h-6 w-6 transition-transform group-hover:scale-110", formData.paymentMethod === m.id ? "text-red-600" : "text-gray-300")} />
+                                                    <m.icon className={cn("h-5 w-5 lg:h-6 lg:w-6 transition-transform group-hover:scale-110", formData.paymentMethod === m.id ? "text-red-600" : "text-gray-300")} />
                                                     <span className="text-[9px] font-black uppercase tracking-tighter">{m.id}</span>
                                                 </button>
                                             ))}
@@ -892,7 +893,7 @@ export function NewInterventionForm({
                                     <Button
                                         onClick={handleSubmit}
                                         disabled={isLoading}
-                                        className="w-full h-20 bg-gray-900 hover:bg-red-600 text-white rounded-[2rem] font-black text-xl gap-4 shadow-2xl shadow-gray-200 transition-all hover:scale-[1.02] active:scale-95 group"
+                                        className="w-full h-16 lg:h-20 bg-gray-900 hover:bg-red-600 text-white rounded-[1.5rem] lg:rounded-[2rem] font-black text-lg lg:text-xl gap-4 shadow-2xl shadow-gray-200 transition-all hover:scale-[1.02] active:scale-95 group"
                                     >
                                         {isLoading ? (
                                             "Ouverture du dossier..."

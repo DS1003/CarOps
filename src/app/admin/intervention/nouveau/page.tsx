@@ -23,7 +23,7 @@ export default async function AdminNewInterventionPage({
     const products = productsResult.success ? productsResult.data : [];
 
     return (
-        <div className="p-8 w-full max-w-[1600px] mx-auto">
+        <div className="p-5 md:p-8 lg:p-12 w-full max-w-[1600px] mx-auto">
             <NewInterventionForm
                 clients={clients || []}
                 vehicles={vehicles || []}
