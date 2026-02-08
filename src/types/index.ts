@@ -34,7 +34,7 @@ export interface Intervention {
 }
 
 export interface Product {
-    id: number;
+    id: string;
     name: string;
     category: string;
     price: number;
@@ -44,7 +44,7 @@ export interface Product {
 }
 
 export interface Service {
-    id: number;
+    id: string;
     name: string;
     price: number;
     duration: string;
@@ -151,7 +151,7 @@ export interface DashboardIntervention {
 }
 
 export interface InventoryProduct {
-    id: number;
+    id: string;
     ref: string;
     name: string;
     category: string;
@@ -160,7 +160,7 @@ export interface InventoryProduct {
 }
 
 export interface InventoryService {
-    id: number;
+    id: string;
     name: string;
     category: string;
     duration: string;
@@ -168,7 +168,7 @@ export interface InventoryService {
 }
 
 export interface ListVehicle {
-    id: number;
+    id: string;
     manufacturer: string;
     model: string;
     registration: string;
