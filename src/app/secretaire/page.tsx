@@ -125,10 +125,10 @@ export default async function SecretaireDashboard() {
                             <div className="space-y-4">
                                 <div className="flex justify-between text-xs font-black uppercase tracking-widest text-white/50">
                                     <span>Progression</span>
-                                    <span>{Math.min(100, (result.data.stats[2].value.replace('€', '').replace(',', '') / 50000) * 100).toFixed(0)}%</span>
+                                    <span>{Math.min(100, (Number(result.data.stats[2].value.replace('€', '').replace(',', '')) / 50000) * 100).toFixed(0)}%</span>
                                 </div>
                                 <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-primary rounded-full" style={{ width: `${Math.min(100, (result.data.stats[2].value.replace('€', '').replace(',', '') / 50000) * 100)}%` }}></div>
+                                    <div className="h-full bg-primary rounded-full" style={{ width: `${Math.min(100, (Number(result.data.stats[2].value.replace('€', '').replace(',', '')) / 50000) * 100)}%` }}></div>
                                 </div>
                                 <p className="text-xs text-white/60 leading-relaxed font-medium">
                                     Objectif: <span className="text-white font-bold">50,000 €</span>
