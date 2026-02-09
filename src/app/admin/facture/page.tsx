@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getInvoices } from "@/app/actions/invoices";
 import { InvoiceList } from "@/components/dashboard/invoice-list";
 

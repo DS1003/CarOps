@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getServices } from "@/app/actions/services";
 import { ServiceList } from "@/components/dashboard/service-list";
 

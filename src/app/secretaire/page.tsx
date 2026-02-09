@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getSecretariatStats } from "@/app/actions/secretariat";
 import { StatCard } from "@/components/dashboard/stat-card";
 import {

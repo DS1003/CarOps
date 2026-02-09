@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getReceptionStats } from "@/app/actions/reception";
 import { StatCard } from "@/components/dashboard/stat-card";
 import {

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getVehicles } from "@/app/actions/vehicles";
 import { VehicleList } from "@/components/dashboard/vehicle-list";
 

@@ -1,3 +1,3 @@
-"use client";
-import ServicesPage from "@/app/admin/service/page";
-export default ServicesPage;
+export const dynamic = "force-dynamic";
+import ServicePage from "@/app/admin/service/page";
+export default ServicePage;

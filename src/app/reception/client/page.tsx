@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getClients } from "@/app/actions/clients";
 import { Search, Plus, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";

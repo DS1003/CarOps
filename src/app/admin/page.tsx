@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getDashboardStats } from "@/app/actions/dashboard";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { RecentInterventions } from "@/components/dashboard/recent-interventions";

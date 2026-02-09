@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getInterventions } from "@/app/actions/interventions";
 import { InterventionKanban } from "@/components/dashboard/intervention-kanban";
 
